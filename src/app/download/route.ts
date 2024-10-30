@@ -80,7 +80,19 @@ export async function GET(request: NextRequest) {
   const stream = Readable.from(dbStream.pipe(csvTransform))
 
   
-  return new Response(stream as any, {
+  return new Response(new ReadableStream({
+    start(controller) {
+      stream.on('data', (chunk: Buffer) => {
+        controller.enqueue(chunk);
+      });
+      stream.on('end', () => {
+        controller.close();
+      });
+      stream.on('error', (err) => {
+        controller.error(err);
+      });
+    }
+  }), {
     headers: {
       'Content-Type': 'text/csv; charset=utf-8',
       'Content-Disposition': 'attachment; filename="voters.csv"',

@@ -1,7 +1,6 @@
 "user server"
 
 import pool from "@/lib/db"
-import { User } from "../page";
 
 
 export async function listMembers({

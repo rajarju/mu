@@ -35,7 +35,18 @@ export const UserFilters = () => {
     resolver: zodResolver(UserSchema),
   });
 
-  const [filters, setFilters] = useState<any>({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [filters, setFilters] = useState<{
+  nid?: string;
+  surname?: string;
+  o_name?: string;
+  alias?: string;
+  address?: string;
+  dl?: string;
+  constituency?: string;
+  voter_id?: string;
+  limit?: string;
+  }>({
     // Initialize filters from the current search params
     ...Object.fromEntries(searchParams.entries())
   });
@@ -71,7 +82,7 @@ export const UserFilters = () => {
             <Input
               key={key}
               placeholder={`Filter ${key}`}
-              {...register(`${key}`)}
+              {...register(key as keyof UserFiltersFormData)}
             />
           )
         ))}

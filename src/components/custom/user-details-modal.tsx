@@ -1,3 +1,4 @@
+import { User } from "@/app/page"
 import {
   Dialog,
   DialogContent,
@@ -11,9 +12,9 @@ export const UserDetailsModal = ({
   isDialogOpen,
   setIsDialogOpen
  }: {
-  selectedUser : any
+  selectedUser : User
   isDialogOpen: boolean
-  setIsDialogOpen: any
+  setIsDialogOpen: (open: boolean) => void
 }) => {
   return <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
   <DialogContent className="sm:max-w-[425px]">
@@ -55,7 +56,7 @@ export const UserDetailsModal = ({
         </div>
         <div className="grid grid-cols-4 items-center gap-4">
           <label className="text-right font-medium">Number:</label>
-          <span className="col-span-3">{selectedUser.number}</span>
+          <span className="col-span-3">{selectedUser.voter_id}</span>
         </div>
       </div>
     )}

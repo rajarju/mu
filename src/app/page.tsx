@@ -2,15 +2,10 @@
 import {
   Table,
   TableBody,
-  TableCell,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-
-import { format } from "date-fns"
-
-import { UserDetailsModal } from '@/components/custom/user-details-modal'
 import { UserFilters } from '@/components/custom/user-filters'
 import { UserRow } from '@/components/custom/user-row'
 import { listMembers } from "./actions/members"
